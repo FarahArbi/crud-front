@@ -9,13 +9,6 @@ pipeline {
                 url: 'https://github.com/FarahArbi/projetDevops.git'
             }
         }
-      
-       stage('SonarQube') {
-            steps {
-                echo 'container SonarQube'
-                sh 'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=sonar -Dsonar.host.url=http://sonarqube:9000'
-            }
-        }
 
         stage('Build Angular project Docker image') {
             steps {
