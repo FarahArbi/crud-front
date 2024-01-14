@@ -16,5 +16,14 @@ pipeline {
                 sh 'npm run build' // Build the Angular application
             }
         }
+
+       stage('Test') {
+            steps {
+                script {
+                    // Run tests if applicable
+                    sh 'npm run test'
+                }
+            }
+        }
     }
 }
