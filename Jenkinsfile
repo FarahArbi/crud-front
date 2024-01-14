@@ -2,6 +2,16 @@ pipeline {
     agent any
 
     stages {
+        stage('Setup Environment') {
+            steps {
+                script {
+                    // Install Node.js and npm
+                    sh 'apt-get update'
+                    sh 'apt-get install -y nodejs npm'
+                }
+            }
+        }
+
         stage('GIT') {
             steps {
                 echo 'Obtenir le projet depuis Git'
@@ -17,11 +27,17 @@ pipeline {
             }
         }
 
-       stage('Test') {
+        stage('Build Angular project Docker image') {
             steps {
+                echo 'Build Angular project Docker image'
+
                 script {
-                    // Run tests if applicable
-                    sh 'npm run test'
+                    // Build Angular project Docker image
+                    def imageName = 'angular-devops'
+                    sh "docker build -t $imageName ."
+                    sh "docker tag $imageName faraharbi/$imageName:latest"
+                    sh "docker login -u faraharbi -p dckr_pat_UUq3d58bRGZ0-L8c5S9e811Iuoo"
+                    sh "docker push faraharbi/$imageName:latest"
                 }
             }
         }
