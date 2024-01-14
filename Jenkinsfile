@@ -1,6 +1,7 @@
 pipeline {
     agent any
 
+    stages {
         stage('GIT') {
             steps {
                 echo 'Obtenir le projet depuis Git'
@@ -25,3 +26,4 @@ pipeline {
         }
     }
 }
+
