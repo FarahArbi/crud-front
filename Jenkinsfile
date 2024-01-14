@@ -1,10 +1,6 @@
 pipeline {
     agent {
-        docker {
-            // Use a Jenkins image with Docker pre-installed
-            image 'jenkins/jenkins:latest'
-            args '-v /var/run/docker.sock:/var/run/docker.sock'
-        }
+        label 'docker'
     }
 
     stages {
@@ -24,4 +20,5 @@ pipeline {
         }
     }
 }
+
 
