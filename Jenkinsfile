@@ -1,29 +1,11 @@
 pipeline {
     agent any
 
-    stages {
-        stage('Setup Environment') {
-            steps {
-                script {
-                    // Install Node.js and npm
-                    sh 'apt-get update'
-                    sh 'apt-get install -y nodejs npm'
-                }
-            }
-        }
-
         stage('GIT') {
             steps {
                 echo 'Obtenir le projet depuis Git'
                 git branch: 'main',
                 url: 'https://github.com/FarahArbi/projetDevops.git'
-            }
-        }
-
-        stage('Build') {
-            steps {
-                sh 'npm install' // Install the project dependencies
-                sh 'npm run build' // Build the Angular application
             }
         }
 
