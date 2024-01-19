@@ -20,7 +20,7 @@ pipeline {
         stage('SonarQube') {
             steps {
                 echo 'container SonarQube'
-                sh 'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=sonar -Dsonar.host.url=http://sonarqube:9000'
+                sh 'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=sonarqube -Dsonar.host.url=http://sonarqube:9000'
             }
         }
 
